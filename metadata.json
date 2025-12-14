@@ -1,0 +1,5 @@
+{
+  "name": "DocuFormat AI",
+  "description": "Upload text or PDF files and instantly view them with intelligent, beautiful formatting powered by Gemini.",
+  "requestFramePermissions": []
+}
