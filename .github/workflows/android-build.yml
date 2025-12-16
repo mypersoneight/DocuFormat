@@ -25,12 +25,20 @@ jobs:
       - name: Sync Capacitor (creates/updates android folder)
         run: npx cap sync android
 
-      - name: Set up Android SDK (platform-tools & build-tools)
-        uses: r0adkll/setup-android@v2
-        with:
-          api-level: 33
-          build-tools: 33.0.2
-          ndk: 23.1.7779620
+      - name: Install Android SDK command-line tools and platforms
+        run: |
+          export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+          mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
+          curl -sSL https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -o /tmp/cmdline.zip
+          unzip -q /tmp/cmdline.zip -d /tmp/cmdline-tools
+          mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools/latest"
+          mv /tmp/cmdline-tools/cmdline-tools/* "$ANDROID_SDK_ROOT/cmdline-tools/latest/"
+
+          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
+          echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> $GITHUB_PATH
+
+          yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" --licenses || true
+          sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platform-tools" "platforms;android-33" "build-tools;33.0.2"
 
       - name: Verify sdkmanager and adb
         run: |
