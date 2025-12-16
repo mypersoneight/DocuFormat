@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DocuFormat</string>
+    <string name="title_activity_main">DocuFormat</string>
+    <string name="package_name">com.mypersoneight.docuformat</string>
+    <string name="custom_url_scheme">com.mypersoneight.docuformat</string>
+</resources>

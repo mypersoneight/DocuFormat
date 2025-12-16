@@ -4,6 +4,14 @@
 
 # Run and deploy your AI Studio app
 
+## Android build & icon assets ✅
+
+- I added an SVG logo at `public/assets/icon.svg` and a script to generate icons (`npm run generate:icons`).
+- You can scaffold an Android app using Capacitor (`npm run cap:init`) and build it locally or with the included GitHub Actions workflow (`.github/workflows/android-build.yml`).
+
+---
+
+
 This contains everything you need to run your app locally.
 
 View your app in AI Studio: https://ai.studio/apps/drive/11V9T1jFV3QaxnogiFVJAA0pho8RQNi7p
