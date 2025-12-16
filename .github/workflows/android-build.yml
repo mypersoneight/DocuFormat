@@ -25,12 +25,17 @@ jobs:
       - name: Sync Capacitor (creates/updates android folder)
         run: npx cap sync android
 
-      - name: Set up Android SDK
-        uses: reactivecircus/android-emulator-runner@v2
+      - name: Set up Android SDK (platform-tools & build-tools)
+        uses: r0adkll/setup-android@v2
         with:
           api-level: 33
           build-tools: 33.0.2
-          target: default
+          ndk: 23.1.7779620
+
+      - name: Verify sdkmanager and adb
+        run: |
+          sdkmanager --list || true
+          adb --version || true
 
       - name: Assemble release
         working-directory: android
